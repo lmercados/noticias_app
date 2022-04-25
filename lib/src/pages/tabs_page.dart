@@ -32,8 +32,8 @@ class _Navegacion extends StatelessWidget {
       currentIndex: navegacionModel.paginaActual,
       onTap: (i) => navegacionModel.paginaActual = i,
       items: const [
-        BottomNavigationBarItem( icon: Icon( Icons.person_outline ), label:'Para ti' ),
-        BottomNavigationBarItem( icon: Icon( Icons.public ), label: 'Encabezados'),
+        BottomNavigationBarItem( icon: Icon( Icons.person_outline ), label:'General' ),
+        BottomNavigationBarItem( icon: Icon( Icons.public ), label: 'Categorias'),
       ]
     );
   }
@@ -53,7 +53,7 @@ class _Paginas extends StatelessWidget {
       children: const <Widget>[
 
         Tab1Page(),
-      //  const Tab2Page()
+        Tab2Page()
 
       ],
     );

@@ -33,11 +33,12 @@ class NewsService with ChangeNotifier {
   NewsService() {
     getTopHeadlines();
 
-   /* for (var item in categories) {
-      categoryArticles[item.name] =item.name as List<Article>;
+    for (var item in categories) {
+        categoryArticles[item.name] = [];
+
     }
 
-    getArticlesByCategory(_selectedCategory );*/
+    getArticlesByCategory(_selectedCategory );
   }
 
   bool get isLoading => _isLoading;
@@ -57,9 +58,7 @@ class NewsService with ChangeNotifier {
 
 
   getTopHeadlines() async {
-    
-
-      
+   
       var url = Uri.https(_baseUrl, '/v2/top-headlines', {
         'country': 'us',
         'apiKey': _apiKey,
@@ -81,12 +80,15 @@ class NewsService with ChangeNotifier {
         return categoryArticles[category];
       }
 
-      final url ='$_baseUrl/top-headlines?apiKey=$_apiKey&country=ca&category=$category' as Uri;
+       var url = Uri.https(_baseUrl, '/v2/top-headlines', {
+        'country': 'us',
+        'apiKey': _apiKey,
+        'category' :category
+       });
+     // final url ='$_baseUrl/top-headlines?apiKey=$_apiKey&country=ca&category=$category' as Uri;
       final resp = await http.get(url);
-
       final newsResponse = NewsResponse.fromJson(resp.body );
-
-      categoryArticles[category]!.addAll( newsResponse.articles );
+      categoryArticles[category]!.addAll(newsResponse.articles);
 
       _isLoading = false;
       notifyListeners();

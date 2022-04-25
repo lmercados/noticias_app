@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:noticias_app/src/theme/theme.dart';
-
 import 'package:provider/provider.dart';
-
 import '../models/category_model.dart';
 import '../services/news_service.dart';
 import '../widgets/lista_noticias.dart';
